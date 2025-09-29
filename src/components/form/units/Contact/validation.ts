@@ -14,11 +14,15 @@ export const contactSchema = z.object({
 				),
 			mailingAddress: z.string().trim().min(1, 'Mailing address is required'),
 			email: z.string().trim().email('Invalid email address'),
-			hasRepresentative: z.enum(['yes', 'no']),
+			hasRepresentative: z
+				.enum(['yes', 'no'])
+				.or(z.literal(''))
+				.refine((v) => v !== '', 'Select yes or no'),
 			representativeType: z
 				.enum(['attorney', 'other'])
 				.optional()
-				.or(z.literal('')),
+				.or(z.literal(''))
+				.refine((v) => v !== '', 'Select option'),
 			representativeOther: z.string().trim().optional().or(z.literal('')),
 		})
 		.superRefine((data, ctx) => {

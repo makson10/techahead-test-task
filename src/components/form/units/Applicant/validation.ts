@@ -4,13 +4,17 @@ export const applicantSchema = z.object({
 	applicant: z
 		.object({
 			applicantName: z.string().trim().min(1, "Applicant's name is required"),
-			applicantDescription: z.enum(['owner', 'tenant', 'other']),
+			applicantDescription: z
+				.enum(['owner', 'tenant', 'other'])
+				.or(z.literal(''))
+				.refine((v) => v !== '', 'Select applicant description'),
 			applicantOther: z.string().trim().optional().or(z.literal('')),
 			isCondoBoardAgent: z.boolean(),
 			boardAuthority: z
 				.enum(['bylaws', 'individual', 'poa'])
 				.optional()
-				.or(z.literal('')),
+				.or(z.literal(''))
+				.refine((v) => v !== '', 'Select board authority'),
 		})
 		.superRefine((data, ctx) => {
 			if (

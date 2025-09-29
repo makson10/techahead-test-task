@@ -25,12 +25,7 @@ const Form = () => {
 		mode: 'onBlur',
 	});
 
-	const {
-		getValues,
-		reset,
-		clearErrors,
-		formState: { isValid, isValidating },
-	} = methods;
+	const { getValues, reset, clearErrors, handleSubmit } = methods;
 
 	const handleSave = () => downloadFile(getValues());
 
@@ -66,10 +61,7 @@ const Form = () => {
 
 					<div className="mt-8 flex flex-wrap gap-3">
 						<Import handleImport={handleImport} />
-						<Save
-							isDisabled={!isValid || isValidating}
-							handleSave={handleSave}
-						/>
+						<Save isDisabled={false} handleSave={handleSubmit(handleSave)} />
 						<Clear handleClear={handleClear} />
 					</div>
 				</form>

@@ -36,7 +36,6 @@ const SaleConstructionField = () => {
 			</h2>
 			<p className="text-xs text-gray-700">Attach extra pages if needed.</p>
 
-			{/* a) Bought after 1/5/2023 */}
 			<div className="space-y-2">
 				<label className="block text-sm font-medium text-gray-900">
 					a) Did the current owner buy this property after January 5, 2023?
@@ -59,6 +58,11 @@ const SaleConstructionField = () => {
 						YES
 					</label>
 				</div>
+				{errors.saleConstruction?.boughtAfter2023 && (
+					<p className="mt-1 text-xs text-red-600">
+						{errors.saleConstruction.boughtAfter2023.message as string}
+					</p>
+				)}
 				{bought === 'yes' && (
 					<div className="grid grid-cols-3 gap-3">
 						<input
@@ -80,7 +84,6 @@ const SaleConstructionField = () => {
 				)}
 			</div>
 
-			{/* b) Signed contract to sell */}
 			<div className="space-y-2">
 				<label className="block text-sm font-medium text-gray-900">
 					b) Has the current owner of this property signed a contract to sell
@@ -104,6 +107,11 @@ const SaleConstructionField = () => {
 						YES
 					</label>
 				</div>
+				{errors.saleConstruction?.signedContractToSell && (
+					<p className="mt-1 text-xs text-red-600">
+						{errors.saleConstruction.signedContractToSell.message as string}
+					</p>
+				)}
 				{contracted === 'yes' && (
 					<div className="grid grid-cols-3 gap-3">
 						<input
@@ -125,7 +133,6 @@ const SaleConstructionField = () => {
 				)}
 			</div>
 
-			{/* c) Offered for sale now */}
 			<div className="space-y-2">
 				<label className="block text-sm font-medium text-gray-900">
 					c) Is the property being offered for sale now?
@@ -148,6 +155,11 @@ const SaleConstructionField = () => {
 						YES
 					</label>
 				</div>
+				{errors.saleConstruction?.offeredForSaleNow && (
+					<p className="mt-1 text-xs text-red-600">
+						{errors.saleConstruction.offeredForSaleNow.message as string}
+					</p>
+				)}
 				{offered === 'yes' && (
 					<input
 						className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm"
@@ -157,7 +169,6 @@ const SaleConstructionField = () => {
 				)}
 			</div>
 
-			{/* d) Refinanced since 1/5/2023 */}
 			<div className="space-y-2">
 				<label className="block text-sm font-medium text-gray-900">
 					d) Since January 5, 2023 has the property been refinanced?
@@ -180,6 +191,11 @@ const SaleConstructionField = () => {
 						YES
 					</label>
 				</div>
+				{errors.saleConstruction?.refinancedSince2023 && (
+					<p className="mt-1 text-xs text-red-600">
+						{errors.saleConstruction.refinancedSince2023.message as string}
+					</p>
+				)}
 				{refinanced === 'yes' && (
 					<p className="text-xs text-gray-700">
 						Attach documents showing what the property was appraised at when it
@@ -188,7 +204,6 @@ const SaleConstructionField = () => {
 				)}
 			</div>
 
-			{/* e) Construction / demolition / alteration */}
 			<div className="space-y-2">
 				<label className="block text-sm font-medium text-gray-900">
 					e) Since January 5, 2023 has there been any construction, demolition
@@ -213,6 +228,11 @@ const SaleConstructionField = () => {
 						YES
 					</label>
 				</div>
+				{errors.saleConstruction?.refinancedSince2023 && (
+					<p className="mt-1 text-xs text-red-600">
+						{errors.saleConstruction.refinancedSince2023.message as string}
+					</p>
+				)}
 				{construction === 'yes' && (
 					<div className="space-y-2">
 						<label className="block text-sm">(1) What work was done?</label>

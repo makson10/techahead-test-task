@@ -101,6 +101,11 @@ const SignatureField = () => {
 						Applicant.
 					</label>
 				</div>
+				{errors.signature?.role && (
+					<p className="mt-1 text-xs text-red-600">
+						{errors.signature.role.message as string}
+					</p>
+				)}
 
 				{role === 'fiduciary' && (
 					<div className="grid grid-cols-2 gap-3 mt-2">

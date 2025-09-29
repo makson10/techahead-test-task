@@ -86,10 +86,10 @@ const ValuationField = () => {
 			</div>
 
 			<p className="text-xs text-gray-700">
-				If line c is less than line b, DO NOT FILE TC108. You have the right to
-				allege an assessment ratio lower than the 6% ratio used in setting the
-				assessment and seek a lower assessment in a proceeding for judicial
-				review. See TC600.
+				<b>If line c is less than line b, DO NOT FILE TC108.</b>
+				<br /> You have the right to allege an assessment ratio lower than the
+				6% ratio used in setting the assessment and seek a lower assessment in a
+				proceeding for judicial review. See TC600.
 			</p>
 		</div>
 	);

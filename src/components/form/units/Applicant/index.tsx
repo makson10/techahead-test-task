@@ -68,6 +68,11 @@ const ApplicantField = () => {
 							Other (specify)
 						</label>
 					</div>
+					{errors.applicant?.applicantDescription && (
+						<p className="mt-1 text-xs text-red-600">
+							{errors.applicant.applicantDescription.message as string}
+						</p>
+					)}
 					{applicantDescription === 'other' && (
 						<div className="mt-2">
 							<input

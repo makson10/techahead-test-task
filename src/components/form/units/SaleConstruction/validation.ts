@@ -3,22 +3,37 @@ import z from 'zod';
 export const saleConstructionSchema = z.object({
 	saleConstruction: z
 		.object({
-			boughtAfter2023: z.enum(['yes', 'no']),
+			boughtAfter2023: z
+				.enum(['yes', 'no'])
+				.or(z.literal(''))
+				.refine((v) => v !== '', 'Select yes or no'),
 			sellerName: z.string().trim().optional().or(z.literal('')),
 			closingDate: z.string().trim().optional().or(z.literal('')),
 			purchasePrice: z.coerce.number().min(0).optional(),
 
-			signedContractToSell: z.enum(['yes', 'no']),
+			signedContractToSell: z
+				.enum(['yes', 'no'])
+				.or(z.literal(''))
+				.refine((v) => v !== '', 'Select yes or no'),
 			buyerName: z.string().trim().optional().or(z.literal('')),
 			contractDate: z.string().trim().optional().or(z.literal('')),
 			contractPrice: z.coerce.number().min(0).optional(),
 
-			offeredForSaleNow: z.enum(['yes', 'no']),
+			offeredForSaleNow: z
+				.enum(['yes', 'no'])
+				.or(z.literal(''))
+				.refine((v) => v !== '', 'Select yes or no'),
 			offeringDetails: z.string().trim().optional().or(z.literal('')),
 
-			refinancedSince2023: z.enum(['yes', 'no']),
+			refinancedSince2023: z
+				.enum(['yes', 'no'])
+				.or(z.literal(''))
+				.refine((v) => v !== '', 'Select yes or no'),
 
-			constructionOrDemolition: z.enum(['yes', 'no']),
+			constructionOrDemolition: z
+				.enum(['yes', 'no'])
+				.or(z.literal(''))
+				.refine((v) => v !== '', 'Select yes or no'),
 			workDescription: z.string().trim().optional().or(z.literal('')),
 			workStartDate: z.string().trim().optional().or(z.literal('')),
 			workCompleteDate: z.string().trim().optional().or(z.literal('')),

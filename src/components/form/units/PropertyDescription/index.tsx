@@ -29,6 +29,11 @@ const PropertyDescriptionField = () => {
 						className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm"
 						{...register('propertyDescription.numKitchens')}
 					/>
+					{errors.propertyDescription?.numKitchens && (
+						<p className="mt-1 text-xs text-red-600">
+							{errors.propertyDescription.numKitchens.message as string}
+						</p>
+					)}
 				</div>
 				<div>
 					<label className="block text-sm text-gray-700 mb-1">
@@ -38,6 +43,11 @@ const PropertyDescriptionField = () => {
 						className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm"
 						{...register('propertyDescription.numBaths')}
 					/>
+					{errors.propertyDescription?.numBaths && (
+						<p className="mt-1 text-xs text-red-600">
+							{errors.propertyDescription.numBaths.message as string}
+						</p>
+					)}
 				</div>
 				<div>
 					<label className="block text-sm text-gray-700 mb-1">
@@ -47,6 +57,11 @@ const PropertyDescriptionField = () => {
 						className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm"
 						{...register('propertyDescription.numBedrooms')}
 					/>
+					{errors.propertyDescription?.numBedrooms && (
+						<p className="mt-1 text-xs text-red-600">
+							{errors.propertyDescription.numBedrooms.message as string}
+						</p>
+					)}
 				</div>
 				<div>
 					<label className="block text-sm text-gray-700 mb-1">
@@ -56,6 +71,11 @@ const PropertyDescriptionField = () => {
 						className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm"
 						{...register('propertyDescription.numOtherRooms')}
 					/>
+					{errors.propertyDescription?.numOtherRooms && (
+						<p className="mt-1 text-xs text-red-600">
+							{errors.propertyDescription.numOtherRooms.message as string}
+						</p>
+					)}
 				</div>
 			</div>
 
@@ -68,6 +88,14 @@ const PropertyDescriptionField = () => {
 						className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm"
 						{...register('propertyDescription.numStoriesAboveBasement')}
 					/>
+					{errors.propertyDescription?.numStoriesAboveBasement && (
+						<p className="mt-1 text-xs text-red-600">
+							{
+								errors.propertyDescription.numStoriesAboveBasement
+									.message as string
+							}
+						</p>
+					)}
 				</div>
 				<div>
 					<label className="block text-sm text-gray-700 mb-1">
@@ -78,6 +106,11 @@ const PropertyDescriptionField = () => {
 						placeholder="YYYY"
 						{...register('propertyDescription.yearOfConstruction')}
 					/>
+					{errors.propertyDescription?.yearOfConstruction && (
+						<p className="mt-1 text-xs text-red-600">
+							{errors.propertyDescription.yearOfConstruction.message as string}
+						</p>
+					)}
 				</div>
 			</div>
 
@@ -92,11 +125,21 @@ const PropertyDescriptionField = () => {
 							placeholder="Indoor (garage)"
 							{...register('propertyDescription.parkingIndoor')}
 						/>
+						{errors.propertyDescription?.parkingIndoor && (
+							<p className="mt-1 text-xs text-red-600">
+								{errors.propertyDescription.parkingIndoor.message as string}
+							</p>
+						)}
 						<input
 							className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm"
 							placeholder="Outdoor"
 							{...register('propertyDescription.parkingOutdoor')}
 						/>
+						{errors.propertyDescription?.parkingOutdoor && (
+							<p className="mt-1 text-xs text-red-600">
+								{errors.propertyDescription.parkingOutdoor.message as string}
+							</p>
+						)}
 					</div>
 				</div>
 				<div>
@@ -189,6 +232,11 @@ const PropertyDescriptionField = () => {
 						{errors.propertyDescription.otherDescription.message as string}
 					</p>
 				)}
+				{errors?.propertyDescription?.propertyType && (
+					<p className="mt-1 text-xs text-red-600">
+						{errors.propertyDescription.propertyType.message as string}
+					</p>
+				)}
 			</div>
 
 			<div className="space-y-2">
@@ -221,6 +269,11 @@ const PropertyDescriptionField = () => {
 						Yes, finished living space
 					</label>
 				</div>
+				{errors?.propertyDescription?.basement && (
+					<p className="mt-1 text-xs text-red-600">
+						{errors.propertyDescription.basement.message as string}
+					</p>
+				)}
 			</div>
 		</div>
 	);

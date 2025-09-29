@@ -117,6 +117,11 @@ const ContactField = () => {
 						Yes
 					</label>
 				</div>
+				{errors.contact?.hasRepresentative && (
+					<p className="mt-1 text-xs text-red-600">
+						{errors.contact.hasRepresentative.message as string}
+					</p>
+				)}
 
 				{hasRep === 'yes' && (
 					<div className="space-y-2">
@@ -141,6 +146,11 @@ const ContactField = () => {
 								Other (specify)
 							</label>
 						</div>
+						{errors.contact?.representativeType && (
+							<p className="mt-1 text-xs text-red-600">
+								{errors.contact.representativeType.message as string}
+							</p>
+						)}
 						{repType === 'other' && (
 							<div>
 								<input

@@ -7,15 +7,18 @@ export const signatureSchema = z.object({
 				.string()
 				.trim()
 				.min(1, 'Enter the name of the person signing'),
-			role: z.enum([
-				'individual_applicant',
-				'fiduciary',
-				'corp_officer',
-				'condo_officer',
-				'general_partner',
-				'llc_member_or_officer',
-				'agent_other',
-			]),
+			role: z
+				.enum([
+					'individual_applicant',
+					'fiduciary',
+					'corp_officer',
+					'condo_officer',
+					'general_partner',
+					'llc_member_or_officer',
+					'agent_other',
+				])
+				.or(z.literal(''))
+				.refine((value) => value !== '', 'Select at least one role'),
 			fiduciaryRelationship: z.string().trim().optional().or(z.literal('')),
 			entityName: z.string().trim().optional().or(z.literal('')),
 			corpOfficerTitle: z.string().trim().optional().or(z.literal('')),

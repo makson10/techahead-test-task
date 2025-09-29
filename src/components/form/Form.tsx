@@ -15,7 +15,8 @@ import SignatureField from './units/Signature';
 import { Import } from './buttons/Import';
 import { Save } from './buttons/Save';
 import { Clear } from './buttons/Clear';
-import Divider from '../Divider';
+import UnitWrapper from '../UnitWrapper';
+import { downloadFile, readImportedFile } from '@/assets/fileHandlers';
 
 const Form = () => {
 	const methods = useForm<FormValues>({
@@ -28,14 +29,10 @@ const Form = () => {
 		getValues,
 		reset,
 		clearErrors,
-		handleSubmit,
 		formState: { isValid, isValidating },
 	} = methods;
 
-	const handleSave = () => {
-		const values = getValues();
-		console.log(values);
-	};
+	const handleSave = () => downloadFile(getValues());
 
 	const handleClear = () => {
 		reset();
@@ -43,54 +40,36 @@ const Form = () => {
 	};
 
 	const handleImport = async (event: React.ChangeEvent<HTMLInputElement>) => {
-		// const file = event.target.files?.[0];
-		// if (!file) return;
-		// try {
-		// 	const text = await file.text();
-		// 	const data = JSON.parse(text) as Partial<FormValues>;
-		// 	if (typeof data.fullName === 'string')
-		// 		setValue('fullName', data.fullName);
-		// 	if (typeof data.email === 'string') setValue('email', data.email);
-		// 	if (typeof (data as any).age !== 'undefined')
-		// 		setValue('age', (data as any).age as number);
-		// 	if (typeof data.country === 'string') setValue('country', data.country);
-		// 	if (typeof data.acceptTerms === 'boolean')
-		// 		setValue('acceptTerms', data.acceptTerms);
-		// } catch {
-		// 	alert('Invalid JSON file');
-		// }
-		// event.currentTarget.value = '';
+		const file = event.target.files?.[0];
+		if (!file) return;
+
+		const values = await readImportedFile(file);
+		reset(values as unknown as FormValues);
 	};
 
 	return (
 		<div className="max-w-2xl mx-auto p-4">
 			<FormProvider {...methods}>
-				<form
-					className="rounded-md border border-gray-200 p-4 shadow-sm bg-white/50"
-					onSubmit={handleSubmit(handleSave)}>
-					<PropertyField />
-					<Divider />
-					<ApplicantField />
-					<Divider />
-					<ContactField />
-					<Divider />
-					<ValuationField />
-					<Divider />
-					<HearingField />
-					<Divider />
-					<PropertyDescriptionField />
-					<Divider />
-					<NonresidentialField />
-					<Divider />
-					<SaleConstructionField />
-					<Divider />
-					<SupportField />
-					<Divider />
-					<SignatureField />
+				<form className="rounded-md border border-gray-200 p-4 shadow-sm bg-white/50">
+					<UnitWrapper>
+						<PropertyField />
+						<ApplicantField />
+						<ContactField />
+						<ValuationField />
+						<HearingField />
+						<PropertyDescriptionField />
+						<NonresidentialField />
+						<SaleConstructionField />
+						<SupportField />
+						<SignatureField />
+					</UnitWrapper>
 
 					<div className="mt-8 flex flex-wrap gap-3">
 						<Import handleImport={handleImport} />
-						<Save isDisabled={!isValid || isValidating} />
+						<Save
+							isDisabled={!isValid || isValidating}
+							handleSave={handleSave}
+						/>
 						<Clear handleClear={handleClear} />
 					</div>
 				</form>

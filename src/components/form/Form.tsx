@@ -4,6 +4,14 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { formSchema, type FormValues } from '../formSchema';
 import PropertyField from './units/Property';
 import ApplicantField from './units/Applicant';
+import ContactField from './units/Contact';
+import ValuationField from './units/Valuation';
+import HearingField from './units/Hearing';
+import PropertyDescriptionField from './units/PropertyDescription';
+import NonresidentialField from './units/Nonresidential';
+import SaleConstructionField from './units/SaleConstruction';
+import SupportField from './units/Support';
+import SignatureField from './units/Signature';
 import { Import } from './buttons/Import';
 import { Save } from './buttons/Save';
 import { Clear } from './buttons/Clear';
@@ -55,7 +63,7 @@ const Form = () => {
 	};
 
 	return (
-		<div className="max-w-xl mx-auto p-4">
+		<div className="max-w-2xl mx-auto p-4">
 			<FormProvider {...methods}>
 				<form
 					className="rounded-md border border-gray-200 p-4 shadow-sm bg-white/50"
@@ -64,6 +72,21 @@ const Form = () => {
 					<Divider />
 					<ApplicantField />
 					<Divider />
+					<ContactField />
+					<Divider />
+					<ValuationField />
+					<Divider />
+					<HearingField />
+					<Divider />
+					<PropertyDescriptionField />
+					<Divider />
+					<NonresidentialField />
+					<Divider />
+					<SaleConstructionField />
+					<Divider />
+					<SupportField />
+					<Divider />
+					<SignatureField />
 
 					<div className="mt-8 flex flex-wrap gap-3">
 						<Import handleImport={handleImport} />

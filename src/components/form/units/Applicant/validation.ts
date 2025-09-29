@@ -32,5 +32,3 @@ export const applicantSchema = z.object({
 			}
 		}),
 });
-
-export type Applicant = z.infer<typeof applicantSchema>;

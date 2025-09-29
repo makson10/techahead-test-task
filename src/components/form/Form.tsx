@@ -3,6 +3,7 @@ import { defaultValues } from '@/assets/defaultValues';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { formSchema, type FormValues } from '../formSchema';
 import PropertyField from './units/Property';
+import ApplicantField from './units/Applicant';
 import { Import } from './buttons/Import';
 import { Save } from './buttons/Save';
 import { Clear } from './buttons/Clear';
@@ -18,6 +19,7 @@ const Form = () => {
 	const {
 		getValues,
 		reset,
+		clearErrors,
 		handleSubmit,
 		formState: { isValid, isValidating },
 	} = methods;
@@ -27,7 +29,10 @@ const Form = () => {
 		console.log(values);
 	};
 
-	const handleClear = () => reset();
+	const handleClear = () => {
+		reset();
+		clearErrors();
+	};
 
 	const handleImport = async (event: React.ChangeEvent<HTMLInputElement>) => {
 		// const file = event.target.files?.[0];
@@ -56,6 +61,8 @@ const Form = () => {
 					className="rounded-md border border-gray-200 p-4 shadow-sm bg-white/50"
 					onSubmit={handleSubmit(handleSave)}>
 					<PropertyField />
+					<Divider />
+					<ApplicantField />
 					<Divider />
 
 					<div className="mt-8 flex flex-wrap gap-3">
